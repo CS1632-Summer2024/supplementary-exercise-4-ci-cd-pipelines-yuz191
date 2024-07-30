@@ -32,6 +32,8 @@ public class CatUnitTest {
 		// Passing InstanceType.MOCK as the first parameter will create a mock cat using Mockito.
 		// Which type is the correct choice for this unit test?  I'll leave it up to you.  The answer is in the Unit Testing Part 2 lecture. :)
 		// TODO: Fill in
+
+		c = Cat.createInstance(InstanceType.IMPL, 1, "Jennyanydots");
 	}
 
 	@After
@@ -53,6 +55,8 @@ public class CatUnitTest {
 	@Test
 	public void testGetId() {
 		// TODO: Fill in
+		int ret = c.getId();
+		assertEquals("Wrong ID", 1, ret);
 	}
 
 	/**
@@ -67,6 +71,8 @@ public class CatUnitTest {
 	@Test
 	public void testGetName() {
 		// TODO: Fill in
+		String ret = c.getName();
+		assertEquals("Wrong name", "Jennyanydots", ret);
 	}
 
 	/**
@@ -81,6 +87,8 @@ public class CatUnitTest {
 	@Test
 	public void testGetRented() {
 		// TODO: Fill in
+		boolean ret = c.getRented();
+		assertFalse("Cat should not be rented initially", ret);
 	}
 
 	/**
@@ -95,6 +103,8 @@ public class CatUnitTest {
 	@Test
 	public void testToString() {
 		// TODO: Fill in
+		String ret = c.toString();
+		assertEquals("toString() method does not work correctly", "ID 1. Jennyanydots", ret);
 	}
 
 	/**
@@ -110,6 +120,9 @@ public class CatUnitTest {
 	@Test
 	public void testRentCat() {
 		// TODO: Fill in
+		c.rentCat();
+		boolean ret = c.getRented();
+		assertTrue("Cat should be rented after calling getRented()", ret);
 	}
 
 	/**
@@ -126,6 +139,10 @@ public class CatUnitTest {
 	@Test
 	public void testReturnCat() {
 		// TODO: Fill in
+		c.rentCat();
+		c.returnCat();
+		boolean ret = c.getRented();
+		assertFalse("Cat should not be rented after returning the cat", ret);
 	}
 
 	/**
@@ -141,6 +158,11 @@ public class CatUnitTest {
 	@Test
 	public void testRenameCat() {
 		// TODO: Fill in
+		c.renameCat("Garfield");
+		String ret_1 = c.getName();
+		String ret_2 = c.toString();
+		assertEquals("Wrong name after renaming", "Garfield", ret_1);
+		assertEquals("Wrong string representation after renaming", "ID 1. Garfield", ret_2);
 	}
 
 }
